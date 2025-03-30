@@ -1,0 +1,43 @@
+import java.util.*;
+/*
+	
+	Following the structure used for Binary Tree
+	
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+ */
+
+public class Solution {
+
+	public static void preOrder(BinaryTreeNode<Integer> root) {
+		//Your code goes here
+		// List<Integer> preorder=new ArrayList<>();
+		if (root==null){
+			return;
+		}
+		Stack<BinaryTreeNode> st=new Stack<>();
+		st.push(root);
+		while(!st.empty()){
+			root=st.pop();
+			System.out.print(root.data + " ");
+			if(root.right!=null){
+				st.push(root.right);
+
+			}
+			if(root.left!=null){
+				st.push(root.left);
+			}
+		}
+	}
+
+}
