@@ -1,0 +1,14 @@
+class Solution:
+    def minOperations(self, nums: List[int], k: int) -> int:
+        if min(nums)<k:
+            return -1
+        nums=sorted(nums,reverse=True)
+        operations=0
+        seen=set()
+        for num in nums:
+            if num ==k:
+                break
+            if num not in seen:
+                operations+=1
+                seen.add(num)
+        return operations
