@@ -1,0 +1,82 @@
+/****************************************************************
+
+ Following is the class structure of the Node class:
+
+ static class Node
+ {
+     int data;
+     Node next;
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+     }
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+     }
+     Node(int data, Node next)
+     {
+         this.data = data;
+         this.next = next;
+     }
+ };
+
+
+ *****************************************************************/
+public class Solution {
+    static class Stack {
+        //Write your code here
+        int currSize;
+        Node top;
+
+        Stack()
+        {
+            //Write your code here
+            this.currSize=0;
+            this.top=null;
+        }
+
+        int getSize()
+        {
+            //Write your code here
+            return currSize;
+        }
+
+        boolean isEmpty()
+        {
+            //Write your code here
+            return currSize==0;
+        }
+
+        void push(int data)
+        {
+            //Write your code here
+            Node temp=new Node(data);
+            temp.next=top;
+            top=temp;
+            currSize++;
+        }
+
+        void pop()
+        {
+            //Write your code here
+            if(isEmpty()){
+                return;
+            }
+            Node temp=top;
+            top=top.next;
+            currSize--;
+        }
+
+        int getTop()
+        {
+            //Write your code here
+            if(isEmpty()){
+                return -1;
+            }
+            return top.data;
+        }
+    }
+}
