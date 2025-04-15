@@ -1,0 +1,12 @@
+def factorial(n):
+    # Write your code here
+    # Print the factorial value.
+    def compute_fact(n):
+        if n==0 or n==1:
+            return 1
+        return n*compute_fact(n-1)
+    print(compute_fact(n))
+    pass
+
+
+
