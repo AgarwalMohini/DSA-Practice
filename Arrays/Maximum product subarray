@@ -1,0 +1,21 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def maximumProduct(arr, n):
+    # write your code here
+    # Return an integer denoting the answer to the required problem 
+    maxi=float('-inf')
+    prefix=1
+    suffix=1
+    for i in range(0,len(arr)):
+        if prefix==0:
+            prefix=1
+        if suffix==0:
+            suffix=1
+        prefix=prefix*arr[i]
+        suffix=suffix*arr[n-i-1]
+        maxi=max(maxi,max(prefix,suffix))
+    return maxi
+    pass
