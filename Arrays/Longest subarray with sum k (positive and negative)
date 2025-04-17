@@ -1,0 +1,21 @@
+from sys import *
+from collections import *
+from math import *
+
+def getLongestSubarray(nums: [int], k: int) -> int:
+    # Write your code here
+    prefSum={}
+    sum=0
+    maxLen=0
+    for i in range(len(nums)):
+        sum+=nums[i]
+        if sum==k:
+            maxLen=max(maxLen,i+1)
+        rem=sum-k
+        if rem in prefSum:
+            length=i-prefSum[rem]
+            maxLen=max(maxLen,length)
+        if sum not in prefSum:
+            prefSum[sum]=i
+    return maxLen
+    pass
