@@ -1,0 +1,20 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def rotateMatrix(matrix):
+    # Write your code here.
+    n=len(matrix)
+    for i in range(n):
+        for j in range(i+1,n):
+            matrix[i][j],matrix[j][i]=matrix[j][i],matrix[i][j]
+    for j in range(n):
+        top=0
+        bottom=n-1
+        while top<bottom:
+            matrix[top][j],matrix[bottom][j]=matrix[bottom][j],matrix[top][j]
+            top+=1
+            bottom-=1
+    return matrix
+    pass
