@@ -1,0 +1,37 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def findLeaders(elements, n):
+    # Write your code here.
+    arr = []
+    i = n - 1
+    max_val = elements[i]
+    arr.append(elements[i])
+    
+    while i >= 0:
+        if elements[i] > max_val:
+            arr.append(elements[i])
+            max_val = elements[i]
+        i -= 1
+    
+    return arr[::-1]
+    pass
+
+# Taking input using fast I/O.
+def takeInput():
+    n = int(input())
+    elements = list(map(int, input().strip().split(" ")))
+
+    return n, elements
+
+# Main.
+t = int(input())
+while t:
+    n, elements = takeInput()
+    answer = findLeaders(elements, n)
+    for ans in answer:
+        print(ans, end=" ")
+    print()
+    t = t-1
