@@ -1,0 +1,10 @@
+from collections import Counter
+class Solution:
+    def numRabbits(self, answers: List[int]) -> int:
+        Freq=Counter(answers)
+        total=0
+        for answer,count in Freq.items():
+            group_size=answer+1
+            groups=ceil(count/group_size)
+            total+=groups*group_size
+        return total
