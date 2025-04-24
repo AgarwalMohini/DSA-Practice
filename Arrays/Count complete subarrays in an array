@@ -1,0 +1,16 @@
+from collections import Counter
+from typing import List
+
+class Solution:
+    def countCompleteSubarrays(self, nums: List[int]) -> int:
+        seen = set(nums)
+        l = len(seen)
+        n = len(nums)
+        result = 0
+        for i in range(n):
+            freq = Counter()
+            for j in range(i, n):
+                freq[nums[j]] += 1
+                if len(freq) == l:
+                    result += 1
+        return result
