@@ -1,0 +1,23 @@
+from typing import List
+
+class Solution:
+    def countSubarrays(self, nums: List[int], minK: int, maxK: int) -> int:
+        minPosition = -1
+        maxPosition = -1
+        culprit_idx = -1
+        ans = 0
+        
+        for i in range(len(nums)):
+            if nums[i] < minK or nums[i] > maxK:
+                culprit_idx = i
+            if nums[i] == minK:
+                minPosition = i
+            if nums[i] == maxK:
+                maxPosition = i
+
+            smaller = min(minPosition, maxPosition)
+            temp = smaller - culprit_idx
+            if temp > 0:
+                ans += temp
+        
+        return ans
