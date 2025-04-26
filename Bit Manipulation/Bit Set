@@ -1,0 +1,14 @@
+from sys import *
+from collections import *
+from math import *
+from collections import Counter
+
+def findFirstRepeatingDigit(digitPattern):
+    seen = set()
+
+    for digit in digitPattern:
+        if digit in seen:
+            return int(digit)  # Return the first repeating digit as integer
+        seen.add(digit)
+
+    return -1
