@@ -1,0 +1,9 @@
+def NthRoot(n: int, m: int) -> int:
+    # Write Your Code Here
+    a=m**(1/n)
+    a_rounded=round(a)
+    if a_rounded**n==m:
+        return a_rounded
+    else:
+        return -1
+    pass
