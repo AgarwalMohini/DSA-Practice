@@ -1,0 +1,14 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def findMinMax(a, b):
+
+    # Write your code here
+    mini=min(a,b)
+    maxi=max(a,b)
+    if mini==maxi:
+        return a,b
+    return mini,maxi
+    pass
