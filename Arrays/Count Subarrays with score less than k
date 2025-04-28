@@ -1,0 +1,13 @@
+class Solution:
+    def countSubarrays(self, nums: List[int], k: int) -> int:
+        n=len(nums)
+        ans=0
+        sum1=0
+        l=0
+        for i in range(n):
+            sum1+=nums[i]
+            while(sum1*(i-l+1)>=k):
+                sum1=sum1-nums[l]
+                l+=1
+            ans+=(i-l+1)
+        return ans
