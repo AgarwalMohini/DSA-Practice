@@ -1,0 +1,18 @@
+from collections import Counter
+class Solution:
+    def countSubarrays(self, nums: List[int], k: int) -> int:
+        maxi=max(nums)
+        n=len(nums)
+        i=0
+        j=0
+        countMax=0
+        result=0
+        for j in range(n):
+            if nums[j]==maxi:
+                countMax+=1
+                while countMax>=k:
+                    result+=(n-j)
+                    if nums[i]==maxi:
+                        countMax-=1
+                    i+=1
+        return result
