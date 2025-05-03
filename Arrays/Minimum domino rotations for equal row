@@ -1,0 +1,19 @@
+class Solution:
+    def find(self,tops,bottoms,val):
+        swapTop=0
+        swapBottom=0
+        for i in range(len(tops)):
+            if tops[i]!=val and bottoms[i]!=val:
+                return -1
+            elif tops[i]!=val:
+                swapTop+=1
+            elif bottoms[i]!=val:
+                swapBottom+=1
+        return min(swapTop,swapBottom)
+    def minDominoRotations(self, tops: List[int], bottoms: List[int]) -> int:
+        res=float('inf')
+        for val in range(1,7):
+            swaps=self.find(tops,bottoms,val)
+            if swaps!=-1:
+                res=min(res,swaps)
+        return res if res!=float('inf') else -1
