@@ -1,0 +1,16 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from typing import List
+
+
+def anagramMapping(n: int, a: List[int], b: List[int]) -> List[int]:
+    # write your code here
+    index_map={b[i]: i for i in range(n)}
+    l=[]
+    for i in range(len(a)):
+        l.append(index_map[a[i]])
+    return l
+    pass
