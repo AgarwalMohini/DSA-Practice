@@ -1,0 +1,25 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def ninjaCity(mat):
+
+    # Write your Code Here.
+    # Return a 2-d list of integers
+    for row in mat:
+        row.reverse()
+    return mat
+    passfrom os import *
+from sys import *
+from collections import *
+from math import *
+
+def ninjaCity(mat):
+
+    # Write your Code Here.
+    # Return a 2-d list of integers
+    for row in mat:
+        row.reverse()
+    return mat
+    pass
