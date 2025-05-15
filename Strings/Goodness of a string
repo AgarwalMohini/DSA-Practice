@@ -1,0 +1,30 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def goodnessOfString(s):
+    # Write your code here.
+    depth=0
+    goodness=0
+    MOD=10**9+7
+    i=0
+    while i<len(s):
+        if s[i]=='[':
+            depth+=1
+            i+=1
+        elif s[i]==']':
+            depth-=1
+            i+=1
+        elif s[i]==',':
+            i+=1
+        elif s[i].isdigit():
+            num=0
+            while i<len(s) and s[i].isdigit():
+                num=num*10 + int(s[i])
+                i+=1
+            goodness+=(num*depth)%MOD
+        else:
+            i+=1
+    return goodness%MOD
+    pass
