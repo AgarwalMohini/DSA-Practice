@@ -1,0 +1,30 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+def segregateOddEven(head):
+
+    # Write your code here.
+    if head is None:
+        return None
+    odd_dummy=Node(0)
+    even_dummy=Node(0)
+
+    odd_tail=odd_dummy
+    even_tail=even_dummy
+
+    current=head
+    while current:
+        if current.data%2!=0:
+            odd_tail.next=current
+            odd_tail=odd_tail.next
+        else:
+            even_tail.next=current
+            even_tail=even_tail.next
+        current=current.next
+    even_tail.next=None
+    odd_tail.next=even_dummy.next
+    return odd_dummy.next
+    pass
