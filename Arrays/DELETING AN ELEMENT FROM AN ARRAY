@@ -1,0 +1,26 @@
+def main():
+    arr = [1, 20, 5, 78, 30]
+    key = int(input("Enter element to delete: "))
+    
+    index = -1
+
+    # Search for the key in the list
+    for i in range(len(arr)):
+        if arr[i] == key:
+            index = i
+            break
+
+    if index != -1:
+        # Delete the element by shifting left
+        for i in range(index, len(arr) - 1):
+            arr[i] = arr[i + 1]
+        arr.pop()  # Remove the duplicate last element
+
+        print("New Array:", end=" ")
+        for i in range(len(arr)):
+            print(arr[i], end=" ")
+    else:
+        print("Element Not Found")
+
+if __name__ == "__main__":
+    main()
