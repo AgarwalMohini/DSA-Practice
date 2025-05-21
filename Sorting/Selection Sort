@@ -1,0 +1,16 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def selectionSort(arr,n):
+    # Write your code here
+    # Do not return anything. Update the given array in-place
+    passes=n-1
+    for i in range(passes):
+        mini=i 
+        for j in range(i,n):
+            if arr[mini]>arr[j]:
+                mini=j
+        arr[i],arr[mini]=arr[mini],arr[i]
+    pass
