@@ -1,0 +1,13 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def findAngle(hour,minute):
+    # Write your Code here.
+    minute_angle=6*minute
+    hour_angle=(30*hour)+(0.5*minute)
+    angle_between=abs(hour_angle-minute_angle)
+    other_angle=360-angle_between
+    mini=min(angle_between,other_angle)
+    return floor(mini)
