@@ -1,49 +1,24 @@
-/****************************************************************
-
- Following is the class structure of the Node class:
-
- class Node {
-     public int data;
-     public Node next;
-
-     Node()
-     {
-         this.data = 0;
-         this.next = null;
-     }
-     Node(int data)
-     {
-         this.data = data;
-         this.next = null;
-     }
-     Node(int data, Node next)
-     {
-         this.data = data;
-         this.next = next;
-     }
- }
-
- *****************************************************************/
-
-public class Solution
-{
-    public static Node reverseLinkedList(Node head)
-    {
-        // Write your code here.
-        if(head.next == null) return head;
-        Node last = head;
-        Node curr = head.next;
-        while(curr != null){
-
-            Node front = curr.next;
-            curr.next = last;
-            if(last == head){
-                last.next = null;
-                last = curr;
-            }
-            else last = curr;
-            curr = front;
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev=null;
+        ListNode curr=head;
+        ListNode next;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
         }
-        return last;
-    }      
+        return prev;
+    }
 }
