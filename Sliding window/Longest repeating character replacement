@@ -1,0 +1,20 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        i=0
+        j=0
+        maxLen=0
+        maxFreq=0
+        hash=[0]*26
+        while(j<len(s)):
+            idx=ord(s[j])-ord('A')
+            hash[idx]+=1
+            maxFreq=max(maxFreq,hash[idx])
+            
+            if((j-i+1)-maxFreq>k):
+                idx1=ord(s[i])-ord('A')
+                hash[idx1]-=1
+                maxFreq=0
+                i+=1
+            maxLen=max(maxLen,j-i+1)
+            j+=1
+        return maxLen
