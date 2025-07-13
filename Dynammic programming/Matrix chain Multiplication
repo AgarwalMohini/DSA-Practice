@@ -1,0 +1,26 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def solve(arr, i, j, dp):
+    if i == j:
+        return 0
+    if dp[i][j] != -1:
+        return dp[i][j]
+    
+    mini = float('inf')
+    for k in range(i, j):
+        tempAns = (
+            solve(arr, i, k, dp) +
+            solve(arr, k + 1, j, dp) +
+            arr[i - 1] * arr[k] * arr[j]
+        )
+        if tempAns < mini:
+            mini = tempAns
+    dp[i][j] = mini
+    return dp[i][j]
+
+def matrixMultiplication(arr, n):
+    dp = [[-1 for _ in range(n)] for _ in range(n)]
+    return solve(arr, 1, n - 1, dp)
