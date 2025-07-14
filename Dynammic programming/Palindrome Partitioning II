@@ -1,0 +1,38 @@
+def isPalindrome(s: str,i: int,j: int)->bool:
+    while i<j:
+        if s[i]!=s[j]:
+            return False
+        i+=1
+        j-=1
+    return True
+
+def solve(s: str, i: int, j: int, t: list)-> int:
+    if i>=j or isPalindrome(s,i,j):
+        return 0
+    if t[i][j]!=-1:
+        return t[i][j]
+    
+    ans=float('inf')
+    for k in range(i,j):
+        if t[i][k]!=-1:
+            left=t[i][k]
+        else:
+            left=solve(s,i,k,t)
+            t[i][k]=left
+        if t[k+1][j]!=-1:
+            right=t[k+1][j]
+        else:
+            right=solve(s,k+1,j,t)
+            t[k+1][j]=right
+        tempAns=1+left+right
+        ans=min(ans,tempAns)
+    t[i][j]=ans
+    return t[i][j]
+
+def palindromePartitioning(string: str) -> int:
+    # Write your code here.
+    n=len(string)
+    t=[[-1 for _ in range(n)] for _ in range(n)]
+    res=solve(string,0,n-1,t)
+    return res
+    pass
