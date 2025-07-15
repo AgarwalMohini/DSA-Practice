@@ -1,0 +1,45 @@
+from typing import Dict,Tuple
+MOD = 10 ** 9 + 7
+
+def solve(s: str,i: int,j: int,isTrue: bool,t: Dict[Tuple[int, int, bool], int])-> int:
+    if i>j:
+        return False
+    if i==j:
+        if isTrue==True:
+            return s[i]=='T'
+        else:
+            return s[i]=='F'
+    key=(i,j,isTrue)
+    if key in t:
+        return t[key]
+    ans=0
+    for k in range(i+1,j,2):
+        lt=solve(s,i,k-1,True,t) % MOD
+        lf=solve(s,i,k-1,False,t) % MOD
+        rt=solve(s,k+1,j,True,t) % MOD
+        rf=solve(s,k+1,j,False,t) % MOD
+
+        if s[k]=='&':
+            if isTrue==True:
+                ans+=lt*rt % MOD
+            else:
+                ans+=lf*rt+lf*rf+lt*rf % MOD
+        elif s[k]=='|':
+            if isTrue==True:
+                ans+=lt*rt+lt*rf+lf*rt  % MOD
+            else:
+                ans+=lf*rf % MOD
+        elif s[k]=='^':
+            if isTrue==True:
+                ans+=lf*rt+lt*rf % MOD
+            else:
+                ans+=lt*rt+lf*rf % MOD
+    t[key]=ans% MOD
+    return t[key]
+
+def evaluateExp(exp: str) -> int:
+    # Write your code here.
+    n=len(exp)
+    t={}
+    return solve(exp,0,n-1,True,t) % MOD
+    pass
