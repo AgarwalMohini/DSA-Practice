@@ -1,0 +1,30 @@
+class Solution:
+    def solve(self, s1: str,s2: str,dp: dict)->bool:
+        if s1==s2:
+            return True
+        if len(s1)<=1:
+            return False
+        key=(s1,s2)
+        if key in dp:
+            return dp[key]
+        n=len(s1)
+        flag=False
+        for i in range(1,n):
+            if self.solve(s1[:i],s2[:i],dp) and self.solve(s1[i:],s2[i:],dp):
+                flag=True
+                break
+            if self.solve(s1[0:i],s2[-i:],dp) and self.solve(s1[i:],s2[:-i],dp):
+                flag=True
+                break
+        dp[key]=flag
+        return dp[key]
+        
+    def isScramble(self, s1: str, s2: str) -> bool:
+        n=len(s1)
+        m=len(s2)
+        if n!=m:
+            return False
+        if not s1:
+            return True
+        dp={}
+        return self.solve(s1,s2,dp)
