@@ -1,0 +1,41 @@
+from typing import List
+
+class Solution:
+    def solve(self, e: int, f: int, t: List[List[int]]) -> int:
+        if f == 0 or f == 1:
+            return f
+        if e == 1:
+            return f
+        if t[e][f] != -1:
+            return t[e][f]
+
+        low, high = 1, f
+        ans = float('inf')
+
+        while low <= high:
+            mid = (low + high) // 2
+            if t[e - 1][mid - 1] != -1:
+                left = t[e - 1][mid - 1]
+            else:
+                left = self.solve(e - 1, mid - 1, t)
+                t[e - 1][mid - 1] = left
+
+            if t[e][f - mid] != -1:
+                right = t[e][f - mid]
+            else:
+                right = self.solve(e, f - mid, t)
+                t[e][f - mid] = right
+
+            temp = 1 + max(left, right)
+            ans = min(ans, temp)
+            if left < right:
+                low = mid + 1
+            else:
+                high = mid - 1
+
+        t[e][f] = ans
+        return ans
+
+    def superEggDrop(self, k: int, n: int) -> int:
+        t = [[-1 for _ in range(n + 1)] for _ in range(k + 1)]
+        return self.solve(k, n, t)
