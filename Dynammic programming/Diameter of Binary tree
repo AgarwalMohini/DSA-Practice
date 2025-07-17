@@ -1,0 +1,21 @@
+class Solution {
+
+    private int res = 0; 
+
+    public int solve(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int l = solve(root.left);
+        int r = solve(root.right);
+        int temp = 1 + Math.max(l, r);
+        int ans = l + r; 
+        res = Math.max(res, ans);
+        return temp;
+    }
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        solve(root);
+        return res;
+    }
+}
