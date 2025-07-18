@@ -1,0 +1,16 @@
+class Solution:
+    def solve(self,ind: int, arr: List[int], l: List[int], ans: List[List[int]]):
+        n=len(arr)
+        ans.append(l.copy())
+        for i in range(ind,n):
+            if i> ind and arr[i]==arr[i-1]:
+                continue
+            l.append(arr[i])
+            self.solve(i+1,arr,l,ans)
+            l.pop()
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        ans=[]
+        nums.sort()
+        self.solve(0,nums,[],ans)
+        return ans
+        
