@@ -1,0 +1,15 @@
+class Solution:
+    def solve(self,ind: int, arr: List[int], l: List[int], ans: List[List[int]]):
+        n=len(arr)
+        if ind>=n:
+            ans.append(l.copy())
+            return
+        l.append(arr[ind])
+        self.solve(ind+1,arr,l,ans)
+        l.pop()
+        self.solve(ind+1,arr,l,ans)
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        ans=[]
+        self.solve(0,nums,[],ans)
+        return ans
+        
