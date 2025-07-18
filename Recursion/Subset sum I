@@ -1,0 +1,20 @@
+from sys import *
+from collections import *
+from math import *
+
+from typing import List
+def solve(ind: int, arr: List[int], s: int, ans: List[List[int]]):
+    n=len(arr)
+    if ind==n:
+        ans.append(s)
+        return
+    solve(ind+1,arr,s+arr[ind],ans)
+    solve(ind+1,arr,s,ans)
+
+def subsetSum(num: List[int]) -> List[int]:
+    # Write your code here.
+    ans=[]
+    solve(0,num,0,ans)
+    ans.sort()
+    return ans
+    pass
