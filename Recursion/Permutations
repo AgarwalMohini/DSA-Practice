@@ -20,3 +20,6 @@ class Solution:
         ans = []
         self.solve(freq, [], ans, nums)
         return ans
+
+
+# Also we can find all the permutation of a given array using the function/method 'permutations'. This is the method used in python to find all the permutations directly.
