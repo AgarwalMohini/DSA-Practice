@@ -1,0 +1,22 @@
+from typing import List
+from collections import Counter
+
+class Solution:
+    def solve(self, freq: dict, l: List[int], ans: List[List[int]], arr: List[int]):
+        n = len(arr)
+        if len(l) == n:
+            ans.append(l.copy())
+            return 
+        for i in range(len(arr)):
+            if not freq[i]:
+                freq[i] = True
+                l.append(arr[i])
+                self.solve(freq, l, ans, arr) 
+                l.pop()
+                freq[i] = False
+        
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        freq = {i: False for i in range(len(nums))}  
+        ans = []
+        self.solve(freq, [], ans, nums)
+        return ans
