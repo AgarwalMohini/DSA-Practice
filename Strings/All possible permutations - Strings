@@ -1,0 +1,6 @@
+from itertools import permutations
+
+def findPermutations(s):
+    perm = permutations(s)
+    result = [''.join(p) for p in perm]
+    return result
