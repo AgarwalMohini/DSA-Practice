@@ -1,0 +1,33 @@
+public class Solution {
+
+    public static String graphColoring(int[][] mat, int m) {
+        int v = mat.length;
+        int[] color = new int[v];
+
+        if (solve(0, mat, color, m, v)) {
+            return "YES";
+        }
+        return "NO";
+    }
+
+    private static boolean solve(int node, int[][] mat, int[] color, int m, int v) {
+        if (node == v) return true;  
+        for (int c = 1; c <= m; c++) {
+            if (isSafe(node, mat, color, c, v)) {
+                color[node] = c;
+                if (solve(node + 1, mat, color, m, v)) return true;
+                color[node] = 0;  
+            }
+        }
+        return false;
+    }
+
+    private static boolean isSafe(int node, int[][] mat, int[] color, int c, int v) {
+        for (int i = 0; i < v; i++) {
+            if (mat[node][i] == 1 && color[i] == c) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
