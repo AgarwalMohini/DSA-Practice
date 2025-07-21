@@ -1,0 +1,39 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from sys import stdin
+import json
+def isPalindrome(s, start,end):
+    while(start<=end):
+        if s[start]!=s[end]:
+            return False
+        start+=1
+        end-=1
+    return True
+
+def solve(s,ind,path,res):
+    if ind==len(s):
+        res.append(path.copy())
+        return 
+    for i in range(ind,len(s)):
+        if(isPalindrome(s,ind,i)):
+            path.append(s[ind:i+1])
+            solve(s,i+1,path,res)
+            path.pop()
+def partition(s):
+    # Write your code here.
+    res=[]
+    path=[]
+    solve(s,0,path,res)
+    return res
+    pass
+
+s=stdin.readline().rstrip()
+
+final=partition(s)
+
+for ele in final:
+    ele = sorted(ele)
+    print(json.dumps(ele))
