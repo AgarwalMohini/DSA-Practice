@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Solution {
+    static Boolean[] t;
+    static int n;
+    static Set<String> dict;
+
+    public static Boolean solve(String target, int idx) {
+        if (idx == target.length()) return true;
+
+        if (t[idx] != null) return t[idx];
+
+        for (int i = idx + 1; i <= n; i++) {
+            String split = target.substring(idx, i);
+            if (dict.contains(split) && solve(target, i)) {
+                return t[idx] = true;
+            }
+        }
+        return t[idx] = false;
+    }
+
+    public static Boolean wordBreak(String[] arr, int len, String target) {
+        dict = new HashSet<>(Arrays.asList(arr));
+        n = target.length();
+        t = new Boolean[n];
+        return solve(target, 0);
+    }
+}
