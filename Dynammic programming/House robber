@@ -1,0 +1,16 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        n=len(nums)
+        t=[-1]*(n+1)
+        return self.solve(nums,n-1,t)
+    def solve(self,nums: int,ind: int, t: List[int]) -> int:
+        if ind==0:
+            return nums[0]
+        if ind<0:
+            return 0
+        if t[ind]!=-1:
+            return t[ind]
+        pick=nums[ind] + self.solve(nums,ind-2,t)
+        notPick=self.solve(nums,ind-1,t)
+        t[ind]=max(pick,notPick)
+        return t[ind]
