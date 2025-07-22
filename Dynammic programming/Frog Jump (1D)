@@ -1,0 +1,23 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from typing import *
+
+  
+def frogJump(n: int, heights: List[int]) -> int:
+    t=[-1] * (n+1)
+    return solve(n-1,heights,t)
+def solve(n: int, heights: List[int],t:List[int]) ->int:
+    if n==0:
+        return 0
+    if t[n]!=-1:
+        return t[n]
+    left=solve(n-1,heights,t)+abs(heights[n]-heights[n-1])
+    right=float('inf')
+    if n>1:
+        right=solve(n-2,heights,t) + abs(heights[n]-heights[n-2])
+    t[n]=min(left,right)
+    return t[n]
+    pass
