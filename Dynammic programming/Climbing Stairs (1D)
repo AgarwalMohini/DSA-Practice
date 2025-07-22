@@ -1,0 +1,13 @@
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        t=[-1] * (n+1)
+        return self.solve(n,t)
+    def solve(self,n: int, t: List[int]) -> int:
+        if n==0 or n==1:
+            return 1
+        if t[n]!=-1:
+            return t[n]
+        left=self.solve(n-1,t)
+        right=self.solve(n-2,t)
+        t[n]=left+right
+        return t[n]
