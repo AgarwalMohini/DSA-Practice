@@ -1,0 +1,29 @@
+from sys import stdin
+
+def maximumNonAdjacentSum(nums):    
+    n = len(nums)
+    if n == 0:
+        return 0
+    if n == 1:
+        return nums[0]
+
+    prev = nums[0]
+    prev2 = 0
+    
+    for i in range(1, n):
+        pick = nums[i]
+        if i > 1:
+            pick += prev2
+        notPick = prev
+        curr = max(pick, notPick)
+        prev2 = prev
+        prev = curr
+    
+    return prev
+t = int(stdin.readline().rstrip())
+
+while t > 0:
+    n = int(stdin.readline().rstrip())
+    arr = list(map(int, stdin.readline().rstrip().split(" ")))
+    print(maximumNonAdjacentSum(arr))
+    t -= 1
