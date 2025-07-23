@@ -1,0 +1,12 @@
+class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        n=len(triangle)
+        t=[[-1 for _ in range(len(triangle[row]))] for row in range(n)]
+        for j in range(0,n):
+            t[n-1][j]=triangle[n-1][j]
+        for i in range(n-2,-1,-1):
+            for j in range(i,-1,-1):
+                d=triangle[i][j] + t[i+1][j]
+                di=triangle[i][j] + t[i+1][j+1]
+                t[i][j]=min(d,di)
+        return t[0][0]
