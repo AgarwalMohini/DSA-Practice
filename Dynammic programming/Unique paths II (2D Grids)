@@ -1,0 +1,21 @@
+class Solution:
+    def solve(self,i: int, j: int,nums: List[List[int]], t: List[List[int]]) -> int:
+        if i==0 and j==0:
+            return 1
+        if i<0 or j<0:
+            return 0
+        if nums[i][j]==1:
+            return 0
+        if t[i][j]!=-1:
+            return t[i][j]
+        up=self.solve(i-1,j,nums,t)
+        left=self.solve(i,j-1,nums,t)
+        t[i][j]=up+left
+        return t[i][j]
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        m=len(obstacleGrid)
+        n=len(obstacleGrid[0])
+        if obstacleGrid[0][0]==1:
+            return 0
+        t=[[-1 for _ in range(n)] for _ in range(m)]
+        return self.solve(m-1,n-1,obstacleGrid,t)
