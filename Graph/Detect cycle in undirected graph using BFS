@@ -1,0 +1,32 @@
+from collections import deque
+
+def cycle(src,adj,vis):
+    vis[src]=1
+    q=deque()
+    q.append((src,-1))
+    while q:
+        node,parent=q.popleft()
+        for it in adj[node]:
+            if not vis[it]:
+                vis[it]=True
+                q.append((it,node))
+            elif parent!=it:
+                return True
+    return False
+
+def cycleDetection(edges, n, m):
+
+    # Write your code here.
+    # Return "Yes" if cycle id present in the graph else return "No".
+    adj=[[] for _ in range(n+1)]
+    for u,v in edges:
+        adj[u].append(v)
+        adj[v].append(u)
+    vis=[False] * (n+1) 
+    for i in range(n):
+        if not vis[i]:
+            if cycle(i,adj,vis):
+                return "Yes"
+    return "No"
+
+    pass
