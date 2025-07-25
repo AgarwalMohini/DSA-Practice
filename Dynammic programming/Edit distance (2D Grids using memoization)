@@ -1,0 +1,24 @@
+class Solution:
+    def solve(self,i: int, j: int, s1: str, s2: str, t: List[List[int]]) ->int:
+        if i<0:
+            return j+1
+        if j<0:
+            return i+1
+        if t[i][j]!=-1:
+            return t[i][j]
+        if s1[i]==s2[j]:
+            t[i][j]=0+self.solve(i-1,j-1,s1,s2,t)
+        else:
+            insert=1+self.solve(i,j-1,s1,s2,t)
+            delete=1+self.solve(i-1,j,s1,s2,t)
+            update=1+self.solve(i-1,j-1,s1,s2,t)
+            t[i][j]=min(insert,delete,update)
+        return t[i][j]
+    def minDistance(self, word1: str, word2: str) -> int:
+        m=len(word1)
+        n=len(word2)
+        t=[[-1 for _ in range(n)] for _ in range(m)]
+        return self.solve(m-1,n-1,word1,word2,t)
+
+
+        
