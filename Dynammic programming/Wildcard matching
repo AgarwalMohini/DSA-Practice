@@ -1,0 +1,30 @@
+from typing import List
+
+class Solution:
+    def solve(self, i: int, j: int, s1: str, s2: str, t: List[List[int]]) -> bool:
+        if i < 0 and j < 0:
+            return True
+        if i < 0 and j >= 0:
+            return False
+        if j < 0:
+            for k in range(0, i + 1):
+                if s1[k] != '*':
+                    return False
+            return True
+        if t[i][j] != -1:
+            return t[i][j]
+
+        if s1[i] == s2[j] or s1[i] == '?':
+            t[i][j] = self.solve(i - 1, j - 1, s1, s2, t)
+        elif s1[i] == '*':
+            t[i][j] = self.solve(i - 1, j, s1, s2, t) or self.solve(i, j - 1, s1, s2, t)
+        else:
+            t[i][j] = False
+
+        return t[i][j]
+
+    def isMatch(self, s: str, p: str) -> bool:
+        m = len(s)
+        n = len(p)
+        t = [[-1 for _ in range(m)] for _ in range(n)]
+        return self.solve(n - 1, m - 1, p, s, t)
