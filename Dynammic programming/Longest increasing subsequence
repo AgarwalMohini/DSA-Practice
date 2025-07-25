@@ -1,0 +1,22 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def solve(ind, prev_ind,nums,t):
+    if ind==len(nums):
+        return 0
+    if t[ind][prev_ind+1]!=-1:
+        return t[ind][prev_ind+1]
+    leng=0+solve(ind+1,prev_ind,nums,t)
+    if prev_ind==-1 or nums[ind]>nums[prev_ind]:
+        leng=max(leng,1+solve(ind+1,ind,nums,t))
+    t[ind][prev_ind+1]=leng
+    return leng
+def LIS(heights, n):
+
+    # Write your code here
+    n=len(heights)
+    t=[[-1 for _ in range(n+1)] for _ in range(n)]
+    return solve(0,-1,heights,t)
+    pass
