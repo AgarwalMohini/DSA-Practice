@@ -1,0 +1,27 @@
+from collections import deque
+class Solution:
+    def topoSort(self, V, edges):
+        # Convert edge list to adjacency list
+        adj=[[] for _ in range(V)]
+        for u,v in edges:
+            adj[u].append(v)
+        q=deque()
+        indegree=[0] * V
+        for i in range(V):
+            for it in adj[i]:
+                indegree[it]+=1
+        for i in range(V):
+            if indegree[i]==0:
+                q.append(i)
+        topo=[0] * V
+        i=0
+        while q:
+            node=q.popleft()
+            topo[i]=node
+            i+=1
+            for it in adj[node]:
+                indegree[it]-=1
+                if indegree[it]==0:
+                    q.append(it)
+        return topo
+        
