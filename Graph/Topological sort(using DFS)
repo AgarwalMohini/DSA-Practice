@@ -1,0 +1,22 @@
+class Solution:
+    def dfs(self, node, vis, adj, st):
+        vis[node] = 1
+        for neighbor in adj[node]:
+            if vis[neighbor] == 0:
+                self.dfs(neighbor, vis, adj, st)
+        st.append(node)
+
+    def topoSort(self, V, edges):
+        # Convert edge list to adjacency list
+        adj = [[] for _ in range(V)]
+        for u, v in edges:
+            adj[u].append(v)
+
+        vis = [0] * V
+        st = []
+
+        for i in range(V):
+            if vis[i] == 0:
+                self.dfs(i, vis, adj, st)
+
+        return st[::-1]
