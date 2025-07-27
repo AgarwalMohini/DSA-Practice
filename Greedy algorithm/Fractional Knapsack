@@ -1,0 +1,31 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def maximumValue(items, n, w):
+
+	# Write your code here.
+	# ITEMS contains [weight, value] pairs.
+	item_ratio=[]
+	for i in range(n):
+		weight=items[i][0]
+		value=items[i][1]
+		ratio=value/weight
+		item_ratio.append((ratio,value,weight))
+	item_ratio.sort(reverse=True)
+	totVal=0.0
+	for ratio,value,weight in item_ratio:
+		if w==0:
+			break
+		if w>=weight:
+			totVal+=value
+			w-=weight 
+		else:
+			totVal+=ratio * w
+			w=0
+	return round(totVal,2)
+
+
+
+	pass
