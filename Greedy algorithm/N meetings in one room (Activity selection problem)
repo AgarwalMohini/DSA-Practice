@@ -1,0 +1,14 @@
+from typing import List
+
+def maximumMeetings(start: List[int], end: List[int]) -> int:
+    # write your code here
+    meetings=list(zip(start,end))
+    meetings.sort(key=lambda x: x[1])
+    cnt=0
+    freeTime=0
+    for start,end in meetings:
+        if start>freeTime:
+            cnt+=1
+            freeTime=end
+    return cnt
+    pass
