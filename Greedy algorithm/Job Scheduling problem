@@ -1,0 +1,20 @@
+from sys import *
+from collections import *
+from math import *
+
+def jobSchedule(deadline, profit, N):
+	# Write your code here
+	# Return an integer
+	pairs=[(profit[i],deadline[i]) for i in range(N)]
+	pairs.sort(reverse=True)
+	maxi=max(deadline)
+	slots=[False] * (maxi+1)
+	totProfit=0
+	for p,d in pairs:
+		for t in range(d,0,-1):
+			if not slots[t]:
+				slots[t]=True
+				totProfit+=p
+				break
+	return totProfit
+	pass
