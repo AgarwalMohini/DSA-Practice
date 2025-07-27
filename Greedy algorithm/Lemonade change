@@ -1,0 +1,25 @@
+from typing import List
+
+def lemonadeChange(bill: List[int]) -> bool:
+    n=len(bill)
+    five=0
+    ten=0
+    for i in range(n):
+        if bill[i]==5:
+            five+=1
+        elif bill[i]==10:
+            if five:
+                five-=1
+                ten+=1
+            else:
+                return False
+        else:
+            if five and ten:
+                five-=1
+                ten-=1
+            elif five>=3:
+                five-=3
+            else:
+                return False
+    return True
+    pass
