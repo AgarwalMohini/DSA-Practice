@@ -1,0 +1,31 @@
+def canWeAllocate(arr,n,k,barrier):
+    student=1
+    pages=0
+    for i in range(0,n):
+        if arr[i]>barrier:
+            return False
+        if pages+arr[i]>barrier:
+            student+=1
+            pages=arr[i]
+        else:
+            pages+=arr[i]
+    return student<=k
+
+def findPages(arr: [int], n: int, m: int) -> int:
+
+    # Write your code here
+    # Return the minimum number of pages
+    if m>n:
+        return -1
+    low=min(arr)
+    high=sum(arr)
+    res=-1
+    while (low<=high):
+        mid=(low+high)//2
+        if canWeAllocate(arr,n,m,mid):
+            res=mid
+            high=mid-1
+        else:
+            low=mid+1
+    return low
+    pass
