@@ -1,0 +1,37 @@
+from sys import stdin, setrecursionlimit
+setrecursionlimit(10**7)
+
+def calculateMinPatforms(at, dt, n):
+    # Write your code here.
+    at.sort()
+    dt.sort()
+    i=1
+    j=0
+    cnt=1
+    maxCnt=1
+    while i<n and j<n:
+        if at[i]<=dt[j]:
+            cnt+=1
+            i+=1
+        else:
+            cnt-=1
+            j+=1
+        maxCnt=max(maxCnt,cnt)
+    return maxCnt
+    pass
+
+# Taking the input.
+def takeInput():
+    n = int(stdin.readline().strip())
+    at = list(map(int, stdin.readline().strip().split(" ")))
+    dt = list(map(int, stdin.readline().strip().split(" ")))
+
+    return at, dt, n
+
+# Main.
+T = int(input())
+while (T > 0):
+    T -= 1
+    at, dt, n = takeInput()
+    minNumOfPlatforms = calculateMinPatforms(at, dt, n)
+    print(minNumOfPlatforms)
