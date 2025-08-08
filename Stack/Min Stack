@@ -1,0 +1,42 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+
+    static class MinStack {
+
+        // Constructor
+        Stack<Integer> st;
+        int min;
+        
+        MinStack() {
+            st=new Stack<Integer>();
+            min=Integer.MAX_VALUE;
+        }
+
+        void push(int num) {
+            if(num<=min){
+                st.push(min);
+                min=num;
+            }
+            st.push(num);
+        }
+
+        int pop() {
+            if(st.isEmpty()) return -1;
+            int top=st.pop();
+            if(top==min) min=st.pop();
+            return top;
+        }
+
+        int top() {
+            if(st.isEmpty()) return -1;
+            return st.peek();
+        }
+
+        int getMin() {
+            if(st.isEmpty()) return -1;
+            return min;
+        }
+    }
+}
