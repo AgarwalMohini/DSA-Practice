@@ -1,0 +1,35 @@
+import java.util.*;
+public class Solution {
+    public static int sumSubarrayMins(int []arr) {
+        // Write your code here.
+        int n=arr.length;
+        int MOD=(int)1e9+7;
+        int[] nse=new int[n];
+        int[] pse=new int[n];
+        Stack<Integer> st=new Stack<>();
+        for(int i=0;i<n;i++){
+            while(!st.isEmpty() && arr[st.peek()]>arr[i]){
+                st.pop();
+            }
+            pse[i]=st.isEmpty()?-1:st.peek();
+            st.push(i);
+        }
+        st.clear();
+        for(int i=0;i<n;i++){
+            while(!st.isEmpty() && arr[st.peek()]>arr[i]){
+                nse[st.pop()]=i;
+            }
+            st.push(i);
+        }
+        while(!st.isEmpty()){
+            nse[st.pop()]=n;
+        }
+        long ans=0;
+        for(int i=0;i<n;i++){
+            long leftCount=i-pse[i];
+            long rightCount=nse[i]-i;
+            ans=(ans+(long)arr[i] * leftCount * rightCount) % MOD;
+        }
+        return (int)ans;
+    }
+}
