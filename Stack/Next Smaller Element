@@ -1,0 +1,27 @@
+import java.util.*;
+import java.io.*;
+
+public class Solution{
+    static ArrayList<Integer> nextSmallerElement(ArrayList<Integer> arr, int n){
+        // Write your code here.
+        Stack<Integer> st=new Stack<>();
+        int[] nse=new int[n];
+        for(int i=n-1;i>=0;i--){
+            while(!st.isEmpty() && st.peek()>=arr.get(i)){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                nse[i]=-1;
+            }
+            else{
+                nse[i]=st.peek();
+            }
+            st.push(arr.get(i));
+        }
+        ArrayList<Integer> result = new ArrayList<>();
+        for (int val : nse) {
+            result.add(val);
+        }
+        return result;
+    }
+}
