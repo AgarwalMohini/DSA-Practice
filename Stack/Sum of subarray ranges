@@ -1,0 +1,30 @@
+import java.util.*;
+public class Solution {
+    public static int rangeSum(int []nums){
+
+        int n=nums.length;
+        long ans=0;
+        Stack<Integer> st=new Stack<>();
+        for(int right=0;right<=n;right++){
+            while(!st.isEmpty() && (right==n || nums[st.peek()]>=nums[right])){
+                int mid=st.peek();
+                st.pop();
+                int left=st.isEmpty()?-1:st.peek();
+                ans-=(long) nums[mid]*(right-mid) * (mid-left);
+            }
+            st.push(right);
+        }
+        st.clear();
+
+        for(int right=0;right<=n;right++){
+            while(!st.isEmpty() && (right==n || nums[st.peek()]<=nums[right])){
+                int mid=st.peek();
+                st.pop();
+                int left=st.isEmpty()? -1: st.peek();
+                ans+=(long) nums[mid] * (right-mid) * (mid-left);
+            }
+            st.push(right);
+        }
+        return (int)ans;
+    }
+}
