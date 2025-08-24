@@ -1,0 +1,17 @@
+from typing import List
+def dfs(node,roads,vis):
+    vis[node]=True
+    for i in range(len(roads)):
+        if roads[node][i] and not vis[i]:
+            dfs(i,roads,vis)
+def findNumOfProvinces(roads: List[List[int]], n: int) -> int:
+    # Write your code here
+    n=len(roads)
+    vis=[False] * n 
+    cnt=0
+    for i in range(n):
+        if not vis[i]:
+            cnt+=1
+            dfs(i,roads,vis)
+    return cnt
+    pass
