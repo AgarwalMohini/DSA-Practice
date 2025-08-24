@@ -1,0 +1,18 @@
+class Solution:
+    def dfs(self,row,col,ans,image,newColor,drow,dcol,initColor):
+        ans[row][col]=newColor
+        m=len(image)
+        n=len(image[0])
+        for i in range(4):
+            nrow=row+drow[i]
+            ncol=col+dcol[i]
+            if(nrow>=0 and nrow<m and ncol>=0 and ncol<n and image[nrow][ncol]==initColor and ans[nrow][ncol]!=newColor):
+                self.dfs(nrow,ncol,ans,image,newColor,drow,dcol,initColor)
+
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        initColor=image[sr][sc]
+        ans=[row[:] for row in image]
+        drow=[-1,0,+1,0]
+        dcol=[0,+1,0,-1]
+        self.dfs(sr,sc,ans,image,color,drow,dcol,initColor)
+        return ans
