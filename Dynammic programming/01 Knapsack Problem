@@ -1,0 +1,16 @@
+def maxProfit(values, weights, n, w):
+
+    # Write your code here
+    if n==0 or w==0:
+        return 0
+    t=[[0 for _ in range(w+1)] for _ in range(n+1)]
+    for i in range(n+1):
+        t[i][0]=0
+    for i in range(1,n+1):
+        for j in range(1,w+1):
+            if weights[i-1]<=j:
+                t[i][j]=max(values[i-1]+t[i-1][j-weights[i-1]],t[i-1][j])
+            else:
+                t[i][j]=t[i-1][j]
+    return t[n][w]
+    pass
