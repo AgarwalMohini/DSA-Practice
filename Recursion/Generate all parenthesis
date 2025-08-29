@@ -1,0 +1,30 @@
+def isValid(s):
+    count=0
+    for ch in s:
+        if ch=='(':
+            count+=1
+        else:
+            count-=1
+        if count<0:
+            return False
+    return count==0
+
+def solve(curr,n,res):
+    if(len(curr)==2*n):
+        if(isValid("".join(curr))):
+            res.append("".join(curr))
+        return 
+    curr.append('(')
+    solve(curr,n,res)
+    curr.pop()
+
+    curr.append(')')
+    solve(curr,n,res)
+    curr.pop()
+
+def validParenthesis(n: int) -> int:
+    # Write your code here.
+    res=[]
+    solve([],n,res)
+    return res
+    pass
