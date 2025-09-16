@@ -1,0 +1,26 @@
+from typing import List
+
+def dfs(node: int, vis: List[bool], adj: List[List[int]], component: List[int]):
+    vis[node] = True
+    component.append(node)
+    for neighbor in sorted(adj[node]):
+        if not vis[neighbor]:
+            dfs(neighbor, vis, adj, component)
+
+def depthFirstSearch(V: int, E: int, GRAPH: List[List[int]]) -> List[List[int]]:
+    adj = [[] for _ in range(V)]
+    for u, v in GRAPH:
+        adj[u].append(v)
+        adj[v].append(u)
+
+    vis = [False] * V
+    result = []
+
+    for i in range(V):
+        if not vis[i]:
+            component = []
+            dfs(i, vis, adj, component)
+            component.sort()
+            result.append(component)
+
+    return result
