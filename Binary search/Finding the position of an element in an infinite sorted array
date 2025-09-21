@@ -1,0 +1,38 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+class InfinteSizeArray:
+    def __init__(self, arr):
+        self._size = len(arr)
+        self._arr = arr
+
+    def readValueAtIndex(self, index):
+        if (index >= self._size):
+            return 1000000007  
+        else:
+            return self._arr[index]
+
+def binarySearch(obj, low, high, target):
+    while low <= high:
+        mid = (low + high) // 2
+        val = obj.readValueAtIndex(mid)
+        
+        if val == target:
+            return mid
+        elif target < val:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return -1  
+
+def ninjaAndInfiniteSizeArray(obj, target):
+    low = 0
+    high = 1
+    
+    while obj.readValueAtIndex(high) < target:
+        low = high
+        high *= 2
+    return binarySearch(obj, low, high, target)
+
